@@ -64,6 +64,8 @@ public class PhoneScript : MonoBehaviour
     {
         //TODO:
         //show somehow that person was caught by teacher
+        GetComponent<SpriteRenderer>().color = new Color(0.2f, 1.0f, 0.8f);
+        gameObject.SetActive(false);
     }
 
     void BackendCheating()

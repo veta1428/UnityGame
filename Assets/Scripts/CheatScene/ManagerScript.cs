@@ -17,13 +17,13 @@ public class ManagerScript : MonoBehaviour
     public int studentAmount;
 
     //needed to cheat for 1 student
-    public const float ENOUGH = 20;
+    public const float ENOUGH = 3;
 
     //summarised progress
     public float CurrentProgress;
 
     //how often teacher starts watching
-    public const int FREQUENCY = 6;
+    public const int FREQUENCY = 8;
 
     public List<PhoneScript> students;
 
