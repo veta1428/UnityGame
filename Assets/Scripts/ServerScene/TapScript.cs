@@ -90,6 +90,14 @@ public class TapScript : MonoBehaviour
             }
         }
         tapSpeed = newTapSpeed;
+        if (curLoad < minLoad)
+        {
+            curLoad = minLoad;
+        }
+        else if (curLoad > maxLoad)
+        {
+            curLoad = maxLoad;
+        }
     }
      
 
