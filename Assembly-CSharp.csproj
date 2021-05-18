@@ -58,9 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CheatScene\PhoneScript.cs" />
     <Compile Include="Assets\Scripts\CheatScene\ManagerScript.cs" />
-    <Compile Include="Assets\Scripts\CheatScene\TeacherScript.cs" />
     <Compile Include="Assets\Scripts\CheatScene\EndScript.cs" />
+    <Compile Include="Assets\Scripts\CheatScene\TeacherScript.cs" />
     <Compile Include="Assets\Scripts\CheatScene\ButtonScript.cs" />
+    <Compile Include="Assets\Scripts\ServerScene\TapScript.cs" />
+    <Compile Include="Assets\Scripts\ServerScene\ManagerTapScript.cs" />
+    <Compile Include="Assets\Scripts\ServerScene\TheEndScript.cs" />
+    <Compile Include="Assets\Scripts\ServerScene\ButtonEndScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\debug.txt" />

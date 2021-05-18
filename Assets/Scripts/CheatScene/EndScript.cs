@@ -25,9 +25,4 @@ public class EndScript : MonoBehaviour
     {
         
     }
-
-    void OnClick()
-    {
-        Application.Quit();
-    }
 }
