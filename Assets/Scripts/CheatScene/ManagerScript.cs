@@ -46,7 +46,7 @@ public class ManagerScript : MonoBehaviour
         Clear();
         EndScript end = EndScript.Instance;
         end.gameObject.SetActive(true);
-        //end.btn.GetComponent<UnityEngine.UI.Button>().GetComponent<Text>().text = "You've lost! The teacher saw you cheating!";
+        end.btn.gameObject.GetComponentInChildren<Text>().text = "You've lost! The teacher saw you cheating!";
         end.btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnClick);      
         //Debug.Log("button");       
     }
@@ -83,7 +83,7 @@ public class ManagerScript : MonoBehaviour
         Clear();
         EndScript end = EndScript.Instance;
         end.gameObject.SetActive(true);
-        //end.btn.GetComponent<Text>().text = "You've lost! The lesson is over!";
+        end.btn.gameObject.GetComponentInChildren<Text>().text = "You've lost! The lesson is over!";
             
         end.btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnClick);
     }
@@ -116,6 +116,12 @@ public class ManagerScript : MonoBehaviour
     void UIHasWon()
     {
         //TODO
+        Clear();
+        EndScript end = EndScript.Instance;
+        end.gameObject.SetActive(true);
+        end.btn.gameObject.GetComponentInChildren<Text>().text = "You have won!";
+
+        end.btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnClick);
     }
 
     // Update is called once per frame

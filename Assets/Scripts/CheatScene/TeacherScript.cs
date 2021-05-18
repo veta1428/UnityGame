@@ -15,6 +15,8 @@ public class TeacherScript : MonoBehaviour
     //time to cheat plus
     public float delta;
 
+    public float temp;
+
     public bool isTurning;
     public bool isAngry;
 
@@ -67,7 +69,6 @@ public class TeacherScript : MonoBehaviour
             if (timeWatching < 0)
             {
                 IsNotWatchingHandler();
-
                 ManagerScript.Instance.teacherWatching = false;
                 timeWatching = 0;
             }
@@ -78,6 +79,8 @@ public class TeacherScript : MonoBehaviour
             {
                 IsWatchingHandler();
                 isTurning = false;
+                timeToCheat += temp;
+                temp = 0;
                 ManagerScript.Instance.teacherWatching = true;
                 time = 0;
                 GenerateWatchingPeriod();
@@ -107,7 +110,7 @@ public class TeacherScript : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         timeWatching = rnd.Next((ManagerScript.FREQUENCY - (int)(animationStopTime + animationStartTime))/3, (ManagerScript.FREQUENCY - (int)(animationStopTime + animationStartTime)) / 2);
-        timeToCheat += ManagerScript.FREQUENCY - timeWatching;
+        temp += ManagerScript.FREQUENCY - timeWatching;
     }
 
     void UIIsTurning()

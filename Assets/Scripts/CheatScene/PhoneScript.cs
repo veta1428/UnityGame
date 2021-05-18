@@ -93,6 +93,7 @@ public class PhoneScript : MonoBehaviour
     {
         //TODO:
         //show that student has cheated
+        GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f);
     }
 
     public void Sucks()
