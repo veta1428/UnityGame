@@ -5,14 +5,18 @@ using UnityEngine;
 public class TeacherScript : MonoBehaviour
 {
     // time after last wathcing started
-    public float time = ManagerScript.FREQUENCY - 1;
+    public float time;
 
     // how much time left for watching
     public float timeWatching = 0;
     public float animationStartTime;
     public float animationStopTime;
 
+    //time to cheat plus
+    public float delta;
+
     public bool isTurning;
+    public bool isAngry;
 
     //how much student could cheat 
     public float timeToCheat;
@@ -34,9 +38,13 @@ public class TeacherScript : MonoBehaviour
         //??? can we find it dynamically?
         animationStartTime = (float)2;
         animationStopTime = (float)2;
+        isAngry = false;
 
         isTurning = false;
-        ///???
+        ManagerScript.Instance.teacher = this;
+        delta = 3;
+
+        //??? in oredr not to wait frequency time before first watching
         time = ManagerScript.FREQUENCY - 3;
     }
 
@@ -44,6 +52,14 @@ public class TeacherScript : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+        if (isAngry)
+        {
+            return;
+        }
+        if (ManagerScript.ENOUGH * ManagerScript.Instance.studentAmount + delta <= timeToCheat)
+        {
+            ManagerScript.Instance.EndedTime();
+        }
         if (ManagerScript.Instance.teacherWatching)
         {
             isTurning = false;
@@ -115,5 +131,12 @@ public class TeacherScript : MonoBehaviour
         GetComponent<SpriteRenderer>().color = new Color(1.0f, 0f, 0f);
         //TODO
         //if we have no animation of turning teacher than put picture of teacher watching here
+    }
+
+    public void TeacherAngry()
+    {
+        isAngry = true;
+        //TODO animation teacher is angry when saw cheating. Time less than animation of end
+        GetComponent<SpriteRenderer>().color = new Color(0.2f, 0.2f, 0.2f);
     }
 }
