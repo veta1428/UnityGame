@@ -12,16 +12,18 @@ public class WordScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("start:  " );
+        Debug.Log("start:  ");
         mouseDown = false;
         var bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
         var topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
         cameraRect = new Rect(bottomLeft.x, bottomLeft.y, topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
+       // ManagerWordsScript.Instance.cameraRect = cameraRect;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
 
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved && mouseDown)
         {
@@ -42,14 +44,38 @@ public class WordScript : MonoBehaviour
             {
                 y = cameraRect.y;
             }
-            else if (pos.y > cameraRect.y + cameraRect.height)
+            else if (pos.y > cameraRect.y + cameraRect.height/2)
             {
-                y = cameraRect.y + cameraRect.height;
+                y = cameraRect.y + cameraRect.height/2;
             }
 
             transform.position = new Vector3(x, y, 0);
      
-        }     
+        }
+        else
+        {
+            Vector3 pos = gameObject.transform.position;
+            float x = pos.x;
+            if (pos.x < cameraRect.x)
+            {
+                x = cameraRect.x;
+            }
+            else if (pos.x > cameraRect.x + cameraRect.width)
+            {
+                x = cameraRect.x + cameraRect.width;
+            }
+            float y = pos.y;
+            if (pos.y < cameraRect.y)
+            {
+                y = cameraRect.y;
+            }
+            else if (pos.y > cameraRect.y + cameraRect.height / 2)
+            {
+                y = cameraRect.y + cameraRect.height / 2;
+            }
+
+            transform.position = new Vector3(x, y, 0);
+        }
     }
 
     void OnMouseDown()
