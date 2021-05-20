@@ -7,6 +7,11 @@ public class ManagerBugsScript : MonoBehaviour
 {
     Rect cameraRect;
     Canvas canv;
+    public GameObject top;
+    public float timer;
+    public GameObject bottom;
+    public GameObject right;
+    public GameObject left;
     public static ManagerBugsScript Instance { get; private set; }
     // Start is called before the first frame update
     public GameObject bugPrefab;
@@ -24,9 +29,14 @@ public class ManagerBugsScript : MonoBehaviour
     }
     private void Awake()
     {
+        timer = 10;
         var bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
         var topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
         cameraRect = new Rect(bottomLeft.x, bottomLeft.y, topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
+        bottom.transform.position = new Vector3(cameraRect.x, cameraRect.y, 0);
+        top.transform.position = new Vector3(cameraRect.x, cameraRect.y + cameraRect.height, 0);
+        left.transform.position = new Vector3(cameraRect.x, cameraRect.y, 0);
+        right.transform.position = new Vector3(cameraRect.x + cameraRect.width, cameraRect.y + cameraRect.height, 0);
         bugAmount = 5;
         speed = 2;
         Instance = this;
@@ -52,6 +62,17 @@ public class ManagerBugsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer -= Time.deltaTime;
+        if (timer <= 0 && bugs.Count != 0)
+        {
+            for (int i = 0; i < bugAmount; i++)
+            {
+                bugs[i].SetActive(false);
+            }
+            canv.gameObject.GetComponentInChildren<Button>().onClick.AddListener(OnClick);
+            canv.gameObject.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = "You have lost!";
+            canv.gameObject.SetActive(true);
+        }
         if (bugs.Count == 0)
         {
             canv.gameObject.GetComponentInChildren<Button>().onClick.AddListener(OnClick);
