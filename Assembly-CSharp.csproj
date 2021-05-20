@@ -56,6 +56,8 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\WordScene\TheEndTileScript.cs" />
+    <Compile Include="Assets\Scripts\WordScene\WordScript.cs" />
     <Compile Include="Assets\Scripts\CheatScene\PhoneScript.cs" />
     <Compile Include="Assets\Scripts\ServerScene\ButtonEndScript.cs" />
     <Compile Include="Assets\Scripts\ServerScene\TapScript.cs" />
@@ -63,12 +65,12 @@
     <Compile Include="Assets\Scripts\CheatScene\ManagerScript.cs" />
     <Compile Include="Assets\Scripts\CheatScene\EndScript.cs" />
     <Compile Include="Assets\Scripts\ServerScene\ManagerTapScript.cs" />
+    <Compile Include="Assets\Scripts\WordScene\TileScript.cs" />
+    <Compile Include="Assets\Scripts\WordScene\ManagerWordsScript.cs" />
     <Compile Include="Assets\Scripts\CheatScene\TeacherScript.cs" />
     <Compile Include="Assets\Scripts\CheatScene\ButtonScript.cs" />
-    <Compile Include="Assets\Scripts\WordScene\WordScript.cs" />
-    <Compile Include="Assets\Scripts\WordScene\ManagerWordsScript.cs" />
-    <Compile Include="Assets\Scripts\WordScene\TileScript.cs" />
-    <Compile Include="Assets\Scripts\WordScene\TheEndTileScript.cs" />
+    <Compile Include="Assets\Scripts\BugsScene\ManagerBugsScript.cs" />
+    <Compile Include="Assets\Scripts\BugsScene\BugScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\debug.txt" />

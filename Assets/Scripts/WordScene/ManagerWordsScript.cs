@@ -27,12 +27,12 @@ public class ManagerWordsScript : MonoBehaviour
         cameraRect = new Rect(bottomLeft.x, bottomLeft.y, topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
 
         letters = new List<char>() { 'l', 'o', 'v', 'e', 'r' };
-        time = 20;
+        time = 10;
         mouseDown = false;
         Instance = this;
         //params 
-        text = "I ____ you!gggggggggg ggggggggggggggg gggggggggggggggggggggg gggggggggg gggggggggggggggggggg ggggggggggg ggggggggggggggggg";
-        array = new char[] { 'l', 'l', 'l'}; 
+        text = "Learn fourth grade math—arithmetic, measurement, _________, fractions, and more. This course is aligned with Common Core standards.";
+        array = new char[] { 'g', 'e', 'o','m','e','t','r','y' }; 
 
         int i = 0;
         List<int> arraySeq = new List<int>();
@@ -122,8 +122,10 @@ public class ManagerWordsScript : MonoBehaviour
     }
     bool HasWon()
     {
+        int scores;
         for (int i = 0; i < array.Length; i++)
         {
+            scores = 0;
             for (int k = 0; k < array.Length; k++)
             {
                 if (tiles[i].transform.position == words[k].transform.position)
@@ -132,8 +134,16 @@ public class ManagerWordsScript : MonoBehaviour
                     {
                         return false;
                     }
+                    else
+                    {
+                        scores++;
+                    }
                 }
                 
+            }
+            if (scores == 0)
+            {
+                return false;
             }
         }
         return true;
