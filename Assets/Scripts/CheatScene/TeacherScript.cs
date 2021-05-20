@@ -14,7 +14,7 @@ public class TeacherScript : MonoBehaviour
 
     //time to cheat plus
     public float delta;
-
+    public float movement;
     public float temp;
 
     public bool isTurning;
@@ -36,6 +36,7 @@ public class TeacherScript : MonoBehaviour
         IsWatchingHandler += UIIsWatching;
         IsNotWatchingHandler += UIIsNotWatching;
         IsStartWatchingHandler += UIIsTurning;
+        movement = 0.005f;
 
         //??? can we find it dynamically?
         animationStartTime = (float)2;
@@ -45,7 +46,7 @@ public class TeacherScript : MonoBehaviour
         isTurning = false;
         ManagerScript.Instance.teacher = this;
         delta = 3;
-
+        gameObject.transform.position = new Vector3(ManagerScript.Instance.cameraRect.x + ManagerScript.Instance.cameraRect.width / 2, ManagerScript.Instance.cameraRect.y + 5 * ManagerScript.Instance.cameraRect.height / 6, 0);
         //??? in oredr not to wait frequency time before first watching
         time = ManagerScript.FREQUENCY - 3;
     }
@@ -53,6 +54,15 @@ public class TeacherScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.transform.position.x < ManagerScript.Instance.cameraRect.x + ManagerScript.Instance.cameraRect.width / 4)
+        {
+            movement = -movement;
+        }
+        else if (gameObject.transform.position.x > ManagerScript.Instance.cameraRect.x + 3 * ManagerScript.Instance.cameraRect.width / 4)
+        {
+            movement = -movement;
+        }
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x + movement, gameObject.transform.position.y, 0);
         time += Time.deltaTime;
         if (isAngry)
         {

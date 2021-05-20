@@ -237,6 +237,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3710080649647986069, guid: 96e726a2fd2efba45920e9ad2eaf547d, type: 3}
   teacher: {fileID: 0}
+  cameraRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   studentAmount: 20
   MyButton: {fileID: 0}
   CurrentProgress: 0
@@ -726,7 +732,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643757512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.937, y: -1.379, z: 0}
+  m_LocalPosition: {x: -0.18, y: 0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -749,6 +755,7 @@ MonoBehaviour:
   animationStartTime: 0
   animationStopTime: 0
   delta: 0
+  movement: 0
   temp: 0
   isTurning: 0
   isAngry: 0

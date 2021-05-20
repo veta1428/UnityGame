@@ -11,6 +11,7 @@ public class ManagerScript : MonoBehaviour
     public GameObject prefab;
 
     public TeacherScript teacher;
+    public Rect cameraRect;
 
     //singletone
     public static ManagerScript Instance { get; private set; }
@@ -90,18 +91,66 @@ public class ManagerScript : MonoBehaviour
 
     void Awake()
     {
+        var bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        var topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
+        cameraRect = new Rect(bottomLeft.x, bottomLeft.y, topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
         Instance = this;
-        studentAmount = 4;
+        studentAmount = 2;
+        PlaceStudents();
         //HELP: how to locate them???
-        int length = (int)studentAmount / 4;
-        for (int i = 0; i < 4; i++)
+        //int length = (int)studentAmount / 4;
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    for (int j = 0; j < length; j++)
+        //    {
+        //        Instantiate(prefab, new Vector3(2 * i, 2 * j - 4, 0), Quaternion.identity);
+        //    }           
+        //}
+    }
+
+    void PlaceStudents()
+    {
+
+        if (studentAmount > 4)
         {
-            for (int j = 0; j < length; j++)
+            int first = studentAmount / 2;
+            int second = studentAmount - first;
+            float xCoordRow = (float)cameraRect.x + (float)cameraRect.width / 2 - first* 1.5f/ 2;
+            float yCoordFirst = (float)cameraRect.y + (float)cameraRect.height / 3;
+            float yCoordSecond = (float)cameraRect.y + (float)cameraRect.height / 6;
+
+            for (int i = 0; i < first; i++)
             {
-                Instantiate(prefab, new Vector3(2 * i, 2 * j - 4, 0), Quaternion.identity);
-            }           
+                GameObject gameOb = Instantiate(prefab, new Vector3(xCoordRow + 2 * i, yCoordFirst, 0), Quaternion.identity);
+            }
+            xCoordRow = (float)cameraRect.x + (float)cameraRect.width / 2 - (second) * 1.5f/ 2f ;
+
+            for (int i = 0; i < second; i++)
+            {
+                GameObject gameOb = Instantiate(prefab, new Vector3(xCoordRow + 2 * i, yCoordSecond, 0), Quaternion.identity);
+            }
+            //foreach (var item in array)
+            //{
+            //    gameOb = Instantiate(tilePrefab, new Vector3(xCoordTile + 2 * i, yCoordTile, 0), Quaternion.identity);
+            //    Debug.Log(gameOb.transform.position.ToString());
+            //    tiles.Add(gameOb);
+
+            //    i++;
+
+            //}
+            //i = 0;
+        }
+        else
+        {
+            float xCoordRow = (float)cameraRect.x + (float)cameraRect.width / 2 - ((float)studentAmount * 1.5f) / 2f;
+            float yCoord = (float)cameraRect.y + (float)cameraRect.height / 4;
+            for (int i = 0; i < studentAmount; i++)
+            {
+                GameObject gameOb = Instantiate(prefab, new Vector3(xCoordRow + 2 * i, yCoord, 0), Quaternion.identity);
+            }
         }
     }
+        
 
     void Start()
     {
